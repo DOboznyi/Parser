@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Parser
@@ -11,10 +12,8 @@ namespace Parser
     {
         private string path;
         private string outPath;
-        private string[] keys = new string[] { "<span class=rvts23>", "<span class=rvts15>" , "<span class=rvts9>" };
-        private string currTitle;
-        private string currChapter;
-        private string currArticle;
+        private string lastLine;
+        private List<Title> titles;
         public Parser(string path, string outPath) {
             this.path = path;
             this.outPath = outPath;
@@ -22,6 +21,7 @@ namespace Parser
             Parse();
         }
         private void Parse() {
+            titles = new List<Title>();
             try
             {
                 string text = "";
@@ -31,8 +31,12 @@ namespace Parser
                     while ((line = sr.ReadLine()) != null)
                     {
                         if (line.Contains("<span class=rvts23>")) {
-                            string nameTitle = makeTitle(line);
-                            parseTitle(sr,nameTitle);
+                            do
+                            {
+                                string nameTitle = makeTitle(line);
+                                titles.Add(parseTitle(sr, nameTitle));
+                                line = lastLine;
+                            } while (lastLine.Contains("<span class=rvts23>"));
                         }
                     }
                 }
@@ -51,33 +55,134 @@ namespace Parser
             {
                 if (line.Contains("<span class=rvts15>"))
                 {
-                    int numberChapter = makeNumberChapter(line);
-                    line = sr.ReadLine();
-                    string nameChapter = makeNameChapter(line);
-                    parseChapter(sr, nameChapter, numberChapter);
+                    do
+                    {
+                        string numberChapter = makeNumberChapter(line);
+                        line = sr.ReadLine();
+                        string nameChapter = makeNameChapter(line);
+                        title.addChapter(parseChapter(sr, nameChapter, numberChapter));
+                        line = lastLine;
+                    } while (lastLine.Contains("<span class=rvts15>"));
+                    if (lastLine.Contains("<span class=rvts23>") ||lastLine.Contains("<div class=rvps8>"))
+                    {
+                        break;
+                    }
                 }
+                lastLine = line;
             }
             return title;
         }
 
         private string makeNameChapter(string line)
         {
-            line = removeStr(line, "<br><span class=rvts15>");
-            line = removeStr(line, "</span></p>");
+            line = removeHTML(line);
+            if (line == "") line = null;
             return line;
         }
 
-        private int makeNumberChapter(string line)
+        private string makeNumberChapter(string line)
         {
             line = removeStr(line, "<span class=rvts15>Розділ ");
             line = removeStr(line, " </span>");
-            int num = RomanToInteger(line);
+            line = removeHTML(line);
+            string num = line;
             return num;
         }
 
-        private Chapter parseChapter(StreamReader sr, string name, int number)
+        private Chapter parseChapter(StreamReader sr, string name, string number)
         {
-            throw new NotImplementedException();
+            Chapter chapter = new Chapter(name, number);
+            string line;
+            if (name != null)
+            {
+                while ((line = sr.ReadLine()) != null)
+                {
+                    if (line.Contains("<span class=rvts9>"))
+                    {
+                        do
+                        {
+                            string numberArticle = makeNumberArticle(line);
+                            string nameArticle = makeNameArticle(line);
+                            chapter.addArticle(parseArticle(sr, nameArticle, numberArticle));
+                            line = lastLine;
+                        } while (lastLine.Contains("<span class=rvts9>"));
+                        if (lastLine.Contains("<span class=rvts15>Розділ") || lastLine.Contains("<span class=rvts23>"))
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+            else {
+                chapter.addArticle(parseArticle(sr, null, null));
+            }
+            return chapter;
+        }
+
+        private Article parseArticle(StreamReader sr, string nameArticle, string numberArticle)
+        {
+            Article article = new Article(nameArticle,numberArticle);
+            string line;
+            if (nameArticle == null && numberArticle == null) { line = parseText(sr); article.addText(line); }
+            while ((line = sr.ReadLine()) != null)
+            {
+                if (line.Contains("<p class=rvps2>"))
+                {
+                    line = sr.ReadLine();
+                    if (line.Contains("<span class=rvts9>Стаття") || line.Contains("<span class=rvts15>Розділ")|| line.Contains("<span class=rvts23>"))
+                    {
+                        lastLine = line;
+                        break;
+                    }
+                    line = removeHTML(line);
+                    article.addText(line);
+                }
+                if (line.Contains("<span class=rvts9>Стаття") || line.Contains("<span class=rvts15>Розділ")|| line.Contains("<span class=rvts23>")||line.Contains("<div class=rvps8>"))
+                {
+                    lastLine = line;
+                    break;
+                }
+                if (line.Contains("<span class=rvts9>")) {
+                    line = removeHTML(line);
+                    article.addText(line);
+                }
+            }
+            return article;
+        }
+
+        private string parseText(StreamReader sr) {
+            string text;
+            text = sr.ReadLine();
+            text = removeHTML(text);
+            return text;
+        }
+
+        public string removeHTML(string line) {
+            return Regex.Replace(line, "<.*?>", String.Empty);
+        }
+
+        private string makeNameArticle(string line)
+        {
+            string str = line;
+            str = removeHTML(str);
+            int index = str.IndexOf(".");
+                string cleanPath = (index < 0)
+                    ? str
+                    : str.Remove(0, index+2);
+                str = cleanPath;
+            return str;
+        }
+
+        private string makeNumberArticle(string line)
+        {
+            string str = line;
+            str = removeStr(str, "<span class=rvts9>Стаття ");
+            int index = str.IndexOf(".</span>");
+            string cleanPath = (index < 0)
+                ? str
+                : str.Remove(index, str.Length-index);
+            cleanPath = removeHTML(cleanPath);
+            return cleanPath;
         }
 
         private string mkdir(string name, string path) {

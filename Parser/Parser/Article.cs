@@ -8,14 +8,18 @@ namespace Parser
 {
     class Article
     {
-        private int number;
+        private string number;
         private string name;
         private string text;
 
-        public Article(string name, int number, string text) {
+        public Article(string name, string number) {
             this.name = name;
             this.number = number;
-            this.text = text;
+            text = "";
+        }
+
+        public void addText(string text) {
+            this.text += text+ "\n";
         }
     }
 }

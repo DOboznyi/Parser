@@ -9,11 +9,11 @@ namespace Parser
 
     class Chapter
     {
-        private int number;
+        private string number;
         private string name;
         private List<Article> articles;
 
-        public Chapter(string name,int number) {
+        public Chapter(string name,string number) {
             this.name = name;
             this.number = number;
             articles = new List<Article>();
