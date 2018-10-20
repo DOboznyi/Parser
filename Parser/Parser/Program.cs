@@ -11,8 +11,13 @@ namespace Parser
     {
         static void Main(string[] args)
         {
-            string path = @"D:\3.htm";
-            Parser parser = new Parser(path, @"D:\out");            
+            Console.WriteLine("Hello in zakon parcer. You need to enter the path to you *.htm law. Please note, I can parce laws only from http://zakon.rada.gov.ua/laws/file/2341-14. Edition must be from 2015 till now.");
+            Console.WriteLine("Your path with *.htm file: ");
+            string path = @Console.ReadLine();
+            Console.WriteLine("Your path: ");
+            string outpath = @Console.ReadLine();
+            Parser parser = new Parser(path);
+            Collector collector = new Collector(parser.getData(), outpath);
             Console.ReadKey();
         }
     }

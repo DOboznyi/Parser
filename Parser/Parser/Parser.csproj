@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="Article.cs" />
     <Compile Include="Chapter.cs" />
+    <Compile Include="Collector.cs" />
+    <Compile Include="dataContainer.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

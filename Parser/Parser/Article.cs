@@ -21,5 +21,26 @@ namespace Parser
         public void addText(string text) {
             this.text += text+ "\n";
         }
+
+        public string getFullName() {
+            string line = null;
+            if (number != null) {
+                line = "Стаття " + number;
+            }
+            else line = "text";
+            return line;
+        }
+
+        public string getText() {
+            if (number != null) {
+                if (name != null) return "Cтаття " + number + "\n====\n" + name + "\n----\n" + text;
+                return "Cтаття " + number+ "\n====\n" + text;
+            }
+            return text;
+        }
+
+        public string getName() {
+            return name;
+        }
     }
 }

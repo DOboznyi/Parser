@@ -23,5 +23,17 @@ namespace Parser
             articles.Add(article);
         }
 
+        public string getFullName() {
+            string line = "Розділ "+number;
+            if (name!=null)
+            {
+                line += ". " + name;
+            }
+            return line;
+        }
+
+        public List<Article> getArticles() {
+            return articles;
+        }
     }
 }

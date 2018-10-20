@@ -18,5 +18,13 @@ namespace Parser
         public void addChapter(Chapter chapter) {
             chapters.Add(chapter);
         }
+
+        public string getName() {
+            return name;
+        }
+
+        public List<Chapter> getChapters() {
+            return chapters;
+        }
     }
 }
