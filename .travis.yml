@@ -2,7 +2,7 @@ language: csharp
 solution: "./Parser/Parser.sln"
 install:
   - travis_retry nuget restore -source "https://www.nuget.org/api/v2" ./Parser/Parser.sln
-  - nuget install NUnit.Runners -Version 2.12.0 -OutputDirectory testrunner
+  - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
 script:
   - xbuild ./Parser/Parser.sln
-  - mono ./testrunner/NUnit.Runners.2.12.0/tools/nunit-console.exe ./Parser/Parser.Tests/bin/Debug/Parser.Tests.dll
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Parser/Parser.Tests/bin/Debug/Parser.Tests.dll
