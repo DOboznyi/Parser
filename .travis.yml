@@ -1,7 +1,7 @@
 language: csharp
 solution: "./Parser/Parser.sln"
 install:
-  - nuget restore ./Parser/Parser.sln
+  - travis_retry nuget restore -source "https://www.nuget.org/api/v2" ./Parser/Parser.sln
   - nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner
 script:
   - xbuild /p:Configuration=Release ./Parser/Parser.sln
