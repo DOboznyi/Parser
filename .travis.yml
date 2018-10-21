@@ -1,2 +1,2 @@
 language: csharp
-solution: ./Fibonacci/Fibonacci.sln
+solution: ./Parcer/Parcer.sln
