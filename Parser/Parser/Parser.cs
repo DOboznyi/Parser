@@ -21,7 +21,6 @@ namespace Parser
             titles = new List<Title>();
             try
             {
-                string text = "";
                 using (StreamReader sr = new StreamReader(path, System.Text.Encoding.GetEncoding(1251)))
                 {
                     string line;
