@@ -1,2 +1,6 @@
 language: csharp
-solution: ./Parcer/Parcer.sln
+solution: "./Parcer/Parcer.sln"
+install:
+- travis_retry nuget restore -source "https://www.nuget.org/api/v2" ./Parcer/Parcer.sln
+script:
+- xbuild ./Parcer/Parcer.sln
