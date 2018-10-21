@@ -1,2 +1,2 @@
 language: csharp
-solution: Parcer/Parser.sln
+solution: ./Fibonacci/Fibonacci.sln
