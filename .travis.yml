@@ -1,6 +1,6 @@
 language: csharp
-solution: "./Parcer/Parcer.sln"
+solution: "./Parser/Parser.sln"
 install:
-- travis_retry nuget restore -source "https://www.nuget.org/api/v2" ./Parcer/Parcer.sln
+- travis_retry nuget restore -source "https://www.nuget.org/api/v2" ./Parser/Parser.sln
 script:
-- xbuild ./Parcer/Parcer.sln
+- xbuild ./Parser/Parser.sln
