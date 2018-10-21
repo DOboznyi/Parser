@@ -1,2 +1,2 @@
 language: csharp
-solution: Parser.sln
+solution: Parcer/Parser.sln
