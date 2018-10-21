@@ -4,4 +4,3 @@ install:
   - travis_retry nuget restore -source "https://www.nuget.org/api/v2" ./Parser/Parser.sln
 script:
   - xbuild ./Parser/Parser.sln
-  - mono ./Parser/packages/xunit.runner.console*/tools/xunit.console.exe ./Parser/Parser.Tests/bin/Debug/Parser.Tests.dll
