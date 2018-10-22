@@ -38,9 +38,5 @@ namespace Parser
             }
             return text;
         }
-
-        public string getName() {
-            return name;
-        }
     }
 }

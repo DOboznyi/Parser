@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,14 @@ namespace Parser.Tests
             expected = "Cтаття 0\n====\ntext\n";
             article.addText(text);
             Assert.AreEqual(expected, article.getText());
+        }
+
+        [Test]
+        public void Add_text_to_article_in_chapter()
+        {
+            string text = "string";
+            Mock<Article> mockArticle = new Mock<Article>();
+            mockArticle.Verify(mock => mock.addText(It.IsAny<string>()),Times.Once());
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Parser
 { 
 
-    class Chapter
+    public class Chapter
     {
         private string number;
         private string name;

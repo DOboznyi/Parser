@@ -1,19 +1,6 @@
 language: csharp
 solution: "./Parser/Parser.sln"
-env:
-  global: 
-    - secure: "bCY68rqxBAP1QfePcilQzA"
-addons:
-  coverity_scan:
-    project:
-      name: Rassol/Parser
-      description: My Project
-    
-    notification_email: dobozniy@gmail.com
-    
-    build_command: xbuild ./Parser/Parser.sln
-    
-    branch_pattern: coverity_scan
+dist: trusty
 install:
   - travis_retry nuget restore -source "https://www.nuget.org/api/v2" ./Parser/Parser.sln
   - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
