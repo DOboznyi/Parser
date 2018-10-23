@@ -4,4 +4,11 @@ platform: Any CPU
 configuration: Release
 
 before_build:
-  - nuget restore C:\projects\parser\Parser\Parser.sln
+  - cd C:\projects\parser\Parser\
+  - nuget restore Parser.sln
+
+build_script:
+  - choco install "msbuild-sonarqube-runner" -y
+  - MSBuild.SonarQube.Runner.exe begin /k:"Rassol_Parser" /d:sonar.organization="rassol-github" /d:"sonar.host.url=https://sonarqube.com" /d:sonar.login="96e5ae7a816be1b249709dc2e03edc37f37e0adc"
+  - msbuild /t:Rebuild
+  - MSBuild.SonarQube.Runner.exe end /d:sonar.login="96e5ae7a816be1b249709dc2e03edc37f37e0adc"
