@@ -1,0 +1,9 @@
+C
+:C:\Users\Home\source\repos\Parser\Parser\Parser\Article.csutf-8C
+:C:\Users\Home\source\repos\Parser\Parser\Parser\Chapter.csutf-8E
+<C:\Users\Home\source\repos\Parser\Parser\Parser\Collector.csutf-8I
+@C:\Users\Home\source\repos\Parser\Parser\Parser\dataContainer.csutf-8B
+9C:\Users\Home\source\repos\Parser\Parser\Parser\Parser.csutf-8C
+:C:\Users\Home\source\repos\Parser\Parser\Parser\Program.csutf-8S
+JC:\Users\Home\source\repos\Parser\Parser\Parser\Properties\AssemblyInfo.csutf-8A
+8C:\Users\Home\source\repos\Parser\Parser\Parser\Title.csutf-8
