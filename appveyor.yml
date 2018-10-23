@@ -4,4 +4,4 @@ platform: Any CPU
 configuration: Release
 
 before_build:
-  - nuget restore 
+  - nuget restore C:\projects\parser\Parser\Parser.sln
