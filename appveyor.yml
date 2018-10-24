@@ -6,6 +6,8 @@ configuration: Release
 before_build:
   - cd C:\projects\parser\Parser\
   - nuget restore Parser.sln
+  - choco install opencover.portable
+  - choco install codecov
 
 build_script:
   - choco install "msbuild-sonarqube-runner" -y
