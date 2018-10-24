@@ -15,7 +15,7 @@ build_script:
  
 test_script:
 - where nunit-console
-- OpenCover.Console.exe -register:user -target:"nunit-console" -targetargs:".\Parser.Tests\bin\Release\Parser.Tests.dll -noshadow" -filter:"+[Parser*]* -[Parser.Tests*]*" -output:".\coverage.xml"
+- OpenCover.Console.exe -register:user -target:"C:\Tools\NUnit\bin\nunit-console.exe" -targetargs:".\Parser.Tests\bin\Release\Parser.Tests.dll -noshadow" -filter:"+[Parser*]* -[Parser.Tests*]*" -output:".\coverage.xml"
 - codecov -f "coverage.xml
 
 after_test:
