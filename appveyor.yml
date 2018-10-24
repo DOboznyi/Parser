@@ -8,16 +8,18 @@ before_build:
   - nuget restore Parser.sln
   - choco install opencover.portable
   - choco install codecov
+  - choco install "msbuild-sonarqube-runner" -y
+  - msbuild
+  - OpenCover.Console.exe -register:user -target:"C:\Tools\NUnit\bin\nunit-console.exe" -targetargs:".\Parser.Tests\bin\Release\Parser.Tests.dll -noshadow" -filter:"+[Parser*]* -[Parser.Tests*]*" -output:".\coverage.xml"
 
+  
 build_script:
   - choco install "msbuild-sonarqube-runner" -y
-  - MSBuild.SonarQube.Runner.exe begin /k:"Rassol_Parser" /d:sonar.organization="rassol-github" /d:"sonar.host.url=https://sonarqube.com" /d:sonar.login="96e5ae7a816be1b249709dc2e03edc37f37e0adc"
+  - MSBuild.SonarQube.Runner.exe begin /k:"Rassol_Parser" /d:sonar.organization="rassol-github" /d:"sonar.host.url=https://sonarqube.com" /d:sonar.login="96e5ae7a816be1b249709dc2e03edc37f37e0adc" /d:sonar.cs.opencover.reportsPaths="%CD%\coverage.xml"
   - msbuild /t:Rebuild
   - MSBuild.SonarQube.Runner.exe end /d:sonar.login="96e5ae7a816be1b249709dc2e03edc37f37e0adc"
  
 test_script:
-- where nunit-console
-- OpenCover.Console.exe -register:user -target:"C:\Tools\NUnit\bin\nunit-console.exe" -targetargs:".\Parser.Tests\bin\Release\Parser.Tests.dll -noshadow" -filter:"+[Parser*]* -[Parser.Tests*]*" -output:".\coverage.xml"
 - codecov -f "coverage.xml
 
 after_test:
