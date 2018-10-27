@@ -3,4 +3,4 @@
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=Rassol_Parser&metric=alert_status)](https://sonarcloud.io/dashboard?id=Rassol_Parser)
 [![Code Coverage](https://codecov.io/gh/Rassol/Parser/branch/master/graphs/badge.svg)](https://codecov.io/gh/Rassol/Parser)
 # Parser
-Parser
+Parser info
