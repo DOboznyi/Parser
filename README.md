@@ -3,6 +3,7 @@
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=Rassol_Parser&metric=alert_status)](https://sonarcloud.io/dashboard?id=Rassol_Parser)
 [![Code Coverage](https://codecov.io/gh/Rassol/Parser/branch/master/graphs/badge.svg)](https://codecov.io/gh/Rassol/Parser)
 # Parser
+A program which can parse [law](http://zakon.rada.gov.ua/laws/file/2341-14) into folders with text ([Example](https://github.com/Rassol/test_zakon)).
 
 # Windows
 ## 1. Preparation 
@@ -10,7 +11,7 @@
 1.	You are need a MSBuild (Install [Build Tools for Visual Studio 2017](https://visualstudio.microsoft.com/ru/downloads/))
 2.	You are need a [nuget](https://www.nuget.org/downloads)
 3.	You are need a [git](https://git-scm.com/download/win) 
-4.	You need to clone this repo
+4.	You need to clone this repo:
 ```bash
 mkdir <yourPath>
 cd <yourPath>
@@ -49,7 +50,7 @@ git clone git@github.com:Rassol/Parser.git
 
 ## 3. Execute
 
-For execute you need Wine and a liitle bit time. If you execute our programm you can make a tutorial and send it to us.
+For execute you need Wine and a litle bit time. If you execute our programm you can make a tutorial and send it to us.
 
 
 
