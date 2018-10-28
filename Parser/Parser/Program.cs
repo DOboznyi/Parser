@@ -15,7 +15,8 @@ namespace Parser
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
             string version = fvi.ProductVersion;
-            Console.WriteLine("Program version "+version);
+            string shortV = version.Substring(0, version.Length - 33);
+            Console.WriteLine("Program version "+ shortV);
             Console.WriteLine("Hello in zakon parcer. You need to enter the path to you *.htm law. Please note, I can parce laws only from http://zakon.rada.gov.ua/laws/file/2341-14. Edition must be from 2015 till now.");
             Console.WriteLine("Your path with *.htm file: ");
             string path = @Console.ReadLine();

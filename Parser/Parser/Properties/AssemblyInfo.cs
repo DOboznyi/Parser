@@ -14,7 +14,7 @@
 [assembly: System.Reflection.AssemblyCopyright("Copyright")]
 [assembly: System.Runtime.InteropServices.ComVisible(false)]
 [assembly: System.CLSCompliant(true)]
-[assembly: System.Reflection.AssemblyInformationalVersion("v0.1")]
+[assembly: System.Reflection.AssemblyInformationalVersion("v0.3-1-1239d22ebf6d497d9d402acedbde75530f01a64f")]
 [assembly: System.Reflection.AssemblyVersion("1.0.0")]
 [assembly: System.Reflection.AssemblyFileVersion("1.0.0")]
 

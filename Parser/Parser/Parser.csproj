@@ -7,10 +7,12 @@
     <Revision>0</Revision>
   </PropertyGroup>
   <Target Name="Version">
-    <GitDescribe LocalPath="$(SolutionDir)" Arguments="--tags">
+    <GitDescribe LocalPath="$(SolutionDir)" >
       <Output TaskParameter="Tag" PropertyName="Tag" />
+      <Output TaskParameter="CommitCount" PropertyName="CommitCount" />
+      <Output TaskParameter="CommitHash" PropertyName="Revision" />
     </GitDescribe>
-    <AssemblyInfo CodeLanguage="CS" OutputFile="Properties\AssemblyInfo.cs" AssemblyTitle="UkrParserAssembly" AssemblyDescription="Parser for ukrainian criminal laws" AssemblyCompany="" AssemblyProduct="UkrParser" AssemblyCopyright="Copyright" ComVisible="false" CLSCompliant="true" AssemblyInformationalVersion="$(Tag)" AssemblyVersion="$(Major).$(Minor).$(Build)" AssemblyFileVersion="$(Major).$(Minor).$(Build)" />
+    <AssemblyInfo CodeLanguage="CS" OutputFile="Properties\AssemblyInfo.cs" AssemblyTitle="UkrParserAssembly" AssemblyDescription="Parser for ukrainian criminal laws" AssemblyCompany="" AssemblyProduct="UkrParser" AssemblyCopyright="Copyright" ComVisible="false" CLSCompliant="true" AssemblyInformationalVersion="$(Tag)-$(CommitCount)-$(Revision)" AssemblyVersion="$(Major).$(Minor).$(Build)" AssemblyFileVersion="$(Major).$(Minor).$(Build)" />
   </Target>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
