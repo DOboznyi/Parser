@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Parser
 {
-    class Collector
+    public class Collector
     {
         private dataContainer data;
         private string outPath;
@@ -17,7 +17,15 @@ namespace Parser
             mkTree();
         }
 
+        private bool CheckContainerZero(dataContainer data) {
+            if (data.getCount() == 0) {
+                return true;
+            }
+            return false;
+        }
+
         public string mkTree(){
+            if (CheckContainerZero(data)) return null;
             string outLine = mkdir(DateTime.Now.ToString("h_mm_ss"), outPath);
             for (int i = 0; i < data.getTitles().Count(); i++)
             {
@@ -44,26 +52,19 @@ namespace Parser
             string path1 = path + "\\" + name;
             try
             {
-                // Determine whether the directory exists.
                 if (Directory.Exists(path1))
                 {
                     Console.WriteLine("That path exists already.");
                     return null;
                 }
-
-                // Try to create the directory.
+                
                 DirectoryInfo di = Directory.CreateDirectory(path1);
-                //Console.WriteLine("The directory was created successfully at {0}.", Directory.GetCreationTime(path));
-
-                // Delete the directory.
-                //di.Delete();
-                //Console.WriteLine("The directory was deleted successfully.");
+               
             }
             catch (Exception e)
             {
                 Console.WriteLine("The process failed: {0}", e.ToString());
             }
-            finally { }
             return path1;
         }
     }
