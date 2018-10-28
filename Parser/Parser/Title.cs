@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Parser
 {
-    class Title
+    public class Title
     {
         private string name;
         private List<Chapter> chapters;
