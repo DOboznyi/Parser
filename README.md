@@ -11,9 +11,9 @@
 2.	You are need a [nuget](https://www.nuget.org/downloads)
 3.	You are need a [git](https://git-scm.com/download/win) 
 4.	You need to clone this repo
-	mkdir <yourPath>
-	cd <yourPath>
-	git clone git@github.com:Rassol/Parser.git
+> mkdir <yourPath>
+> cd <yourPath>
+> git clone git@github.com:Rassol/Parser.git
 
 ## 2. Build&Compile
 
