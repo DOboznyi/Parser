@@ -11,6 +11,7 @@ namespace Parser.Tests
     [TestFixture]
     public class Class1
     {
+
         [Test]
         public void Add_text_no_name_no_number_article()
         {
@@ -22,6 +23,7 @@ namespace Parser.Tests
             expected = "text\n";
             Assert.AreEqual(expected, article.getText());
         }
+
         [Test]
         public void Add_text_no_name()
         {
@@ -42,6 +44,25 @@ namespace Parser.Tests
             Collector mockCollector = new Collector(mockData.Object,"text");
             var result = mockCollector.mkTree();
             Assert.That(result, Is.EqualTo(null));
+        }
+
+        [Test]
+        public void Check_no_data()
+        {
+            Mock<Article> mockArticle = new Mock<Article>(null, null);
+            mockArticle.Setup(p => p.getFullName()).Returns("text");
+            Chapter testChapter = new Chapter("", "");
+            testChapter.addArticle(mockArticle.Object);
+            var result = testChapter.getArticles().ElementAt(0).getFullName();
+            Assert.That(result, Is.EqualTo("text"));
+        }
+
+        [Test]
+        public void get_chapter_np_name()
+        {
+            var chapter = new Chapter(null, "0");
+            string expected = "Розділ 0";
+            Assert.AreEqual(expected, chapter.getFullName());
         }
     }
 }
