@@ -6,8 +6,7 @@ services:
 before_install:
   - docker pull rassol/parser:mono
   - docker run --mount source=vol1,target=/opt/logs -v /opt/:/opt/input --name my_container rassol/parser:mono
-  - cat /var/lib/docker/volumes/vol1/_data/Tests.log
-  - cat /var/lib/docker/volumes/vol1/_data/Tests.log
+  - ls -al /var/lib/docker/volumes/vol1/_data/
 install:
   - travis_retry nuget restore -source "https://www.nuget.org/api/v2" ./Parser/Parser.sln
   - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
