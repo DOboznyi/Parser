@@ -14,11 +14,7 @@
 [assembly: System.Reflection.AssemblyCopyright("Copyright")]
 [assembly: System.Runtime.InteropServices.ComVisible(false)]
 [assembly: System.CLSCompliant(true)]
-<<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersion("v0.3-7-e9fe690640d857b7b5059e44ac3649e0ce273d0b")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersion("v0.2-8-9b99320e00ccc6252222f70c6dbf9dcedfddd64f")]
->>>>>>> 0628036e2e182ecc56145582be68c1327c44ebf1
+[assembly: System.Reflection.AssemblyInformationalVersion("v0.3-11-61469d079c8b6b089b5f1ff290399342db630c8e")]
 [assembly: System.Reflection.AssemblyVersion("1.0.0")]
 [assembly: System.Reflection.AssemblyFileVersion("1.0.0")]
 
