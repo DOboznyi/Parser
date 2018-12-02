@@ -49,9 +49,15 @@ namespace Parser.Tests
         [Test]
         public void Check_no_data()
         {
+<<<<<<< HEAD
             Mock<Article> mockArticle = new Mock<Article>(null,null);
             mockArticle.Setup(p => p.getFullName()).Returns("text");
             Chapter testChapter = new Chapter("","");
+=======
+            Mock<Article> mockArticle = new Mock<Article>(null, null);
+            mockArticle.Setup(p => p.getFullName()).Returns("text");
+            Chapter testChapter = new Chapter("", "");
+>>>>>>> 0628036e2e182ecc56145582be68c1327c44ebf1
             testChapter.addArticle(mockArticle.Object);
             var result = testChapter.getArticles().ElementAt(0).getFullName();
             Assert.That(result, Is.EqualTo("text"));
