@@ -72,7 +72,7 @@ git clone git@github.com:Rassol/Parser.git
 ```bash
 cd .\Parser\dockerfiles\mono
 docker build -t my-image .
-docker run --mount source=<name of new volume>,target=/opt/logs -v <dir for input data>/:/opt/input -it my-image "/code/Parser/Parser/Parser/bin/Release/Parser.exe <path for inputfile> <path for output files> >> /opt/logs/Program.log"
+docker run --mount source=<name of new volume>,target=/opt/logs -v <dir for input data>/:/opt/input -it --name my_container my-image 
 ```
 
 ## 2. Watch logs
@@ -85,4 +85,16 @@ cat /var/lib/docker/volumes/<name of new volume>/_data/Tests.log
 2.	To watch Build.log:
 ```bash
 cat /var/lib/docker/volumes/<name of new volume>/_data/Tests.log
+```
+
+## 3. Run programm
+### Linux host
+
+1.	Attach the container:
+```bash
+docker attach my_container
+```
+2.	Run the program:
+```bash
+mono /code/Parser/Parser/Parser/bin/Release/Parser.exe xxx xxx >> /opt/logs/Program.log\": stat bash mono /code/Parser/Parser/Parser/bin/Release/Parser.exe xxx xxx >> /opt/logs/Program.log
 ```
