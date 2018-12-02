@@ -5,7 +5,7 @@ services:
   - docker
 before_install:
   - docker pull rassol/parser:mono
-  - docker run --mount source=vol1,target=/opt/logs -v /opt/:/opt/input --name my_container rassol/parser:mono
+  - docker run --mount source=vol1,target=/opt/logs -v /opt/:/opt/input --name my_container -t -d rassol/parser:mono
   - docker exec my_container cat /opt/logs/Build.log
   - docker exec my_container cat /opt/logs/Tests.log
 install:
