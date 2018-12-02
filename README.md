@@ -84,7 +84,7 @@ cat /var/lib/docker/volumes/<name of new volume>/_data/Tests.log
 ```
 2.	To watch Build.log:
 ```bash
-cat /var/lib/docker/volumes/<name of new volume>/_data/Tests.log
+cat /var/lib/docker/volumes/<name of new volume>/_data/Build.log
 ```
 
 ## 3. Run programm
