@@ -22,7 +22,7 @@ namespace Parser
             this.text += text+ "\n";
         }
 
-        public string getFullName() {
+        public virtual string getFullName() {
             string line = null;
             if (number != null) {
                 line = "Стаття " + number;

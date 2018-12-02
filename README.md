@@ -38,19 +38,51 @@ git clone git@github.com:Rassol/Parser.git
 2.	You need nuget ($ sudo apt install nuget)
 3.	You need git ($ sudo apt-get install git)
 4.	You need to clone this repo:
-	mkdir <yourPath>
-	cd <yourPath>
-	git clone git@github.com:Rassol/Parser.git
+```bash
+mkdir <yourPath>
+cd <yourPath>
+git clone git@github.com:Rassol/Parser.git
+```
 
 ## 2. Build&Compile
-
-1.	cd <yourPath>\Parser\Parser
-2.	nuget restore
-3.	xbuild
-
+```bash
+cd <yourPath>\Parser\Parser
+nuget restore
+xbuild
+```
 ## 3. Execute
 
 For execute you need Wine and a litle bit time. If you execute our programm you can make a tutorial and send it to us.
 
+# Docker
 
+## 1. Preparation 
 
+1.	You need git
+2.	You need to clone this repo:
+```bash
+mkdir <yourPath>
+cd <yourPath>
+git clone git@github.com:Rassol/Parser.git
+```
+	
+## 2. Build&Run
+### Linux host
+
+```bash
+cd .\Parser\dockerfiles\mono
+docker build -t my-image .
+docker run --mount source=<name of new volume>,target=/opt/logs -v <dir for input data>/:/opt/input -it my-image "/code/Parser/Parser/Parser/bin/Release/Parser.exe <path for inputfile> <path for output files> >> /opt/logs/Program.log"
+```
+
+## 2. Watch logs
+### Linux host
+
+1.	To watch Tests.log:
+```bash
+cat /var/lib/docker/volumes/<name of new volume>/_data/Tests.log
+```
+2.	To watch Build.log:
+```bash
+cat /var/lib/docker/volumes/<name of new volume>/_data/Tests.log
+```
